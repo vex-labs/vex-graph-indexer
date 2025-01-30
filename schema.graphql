@@ -22,3 +22,19 @@ type Match @entity {
   winner: Team
   created_at: BigInt!
 }
+
+enum PayState {
+  Paid
+  RefundPaid
+}
+
+type Bet @entity {
+  id: ID!
+  account_id: String!
+  amount: BigInt!
+  match_id: ID!
+  team: Team!
+  potential_winnings: BigInt!
+  pay_state: PayState
+  created_at: BigInt!
+}

@@ -1,6 +1,6 @@
 import { near, json, JSONValue, TypedMap, BigInt, log } from '@graphprotocol/graph-ts';
 import { handleCreateMatch, handleEndBetting, handleFinishMatch, handleCancelMatch } from "./event-handlers/match-handlers"
-import { handleFtOnTransfer } from "./event-handlers/ft-on-transfer"
+import { handleClaimBet, handleFtOnTransfer } from "./event-handlers/bet-handlers"
 
 function handleEvent(
   method: string,
@@ -18,6 +18,8 @@ function handleEvent(
     handleCancelMatch(method, event, data, receipt);
   } else if (method == 'ft_on_transfer') {
     handleFtOnTransfer(method, event, data, receipt);
+  } else if (method == 'claim_bet') {
+    handleClaimBet(method, event, data, receipt);
   }
 }
 
