@@ -1,5 +1,24 @@
-type ExampleEntity @entity {
+enum MatchState @entity {
+  Future
+  Current
+  Finished
+  Error
+}
+
+enum Team {
+  Team1
+  Team2
+}
+
+type Match @entity {
   id: ID!
-  block: Bytes!
-  count: BigInt!
+  game: String!
+  date: BigInt!
+  team_1: String!
+  team_2: String!
+  team_1_total_bets: BigInt!
+  team_2_total_bets: BigInt!
+  match_state: MatchState!
+  winner: Team
+  created_at: BigInt!
 }

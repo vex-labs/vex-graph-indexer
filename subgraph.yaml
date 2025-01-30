@@ -1,4 +1,4 @@
-specVersion: 1.0.0
+specVersion: 1.0.4
 indexerHints:
   prune: auto
 schema:
@@ -9,11 +9,12 @@ dataSources:
     network: near-testnet
     source:
       account: "contract.betvex.testnet"
+      startBlock: 186268400
     mapping:
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - ExampleEntity
+        - Match
       receiptHandlers:
         - handler: handleReceipt
-      file: ./src/vex-contract.ts
+      file: ./src/handle-receipt.ts
