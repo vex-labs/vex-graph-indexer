@@ -12,10 +12,8 @@ import {
   handleFinishMatch,
   handleCancelMatch,
 } from "./event-handlers/match-handlers";
-import {
-  handleClaimBet,
-  handleFtOnTransfer,
-} from "./event-handlers/bet-handlers";
+import { handleBet, handleClaimBet } from "./event-handlers/bet-handlers";
+import { handleStake, handleUnstake } from "./event-handlers/stake-handlers";
 
 function handleEvent(
   method: string,
@@ -32,9 +30,15 @@ function handleEvent(
   } else if (method == "cancel_match") {
     handleCancelMatch(method, event, data, receipt);
   } else if (method == "ft_on_transfer") {
-    handleFtOnTransfer(method, event, data, receipt);
-  } else if (method == "claim_bet") {
+    if (event == "bet") {
+      handleBet(method, event, data, receipt);
+    } else if (event == "stake_vex") {
+      handleStake(method, event, data, receipt);
+    }
+  } else if (method == "claim_callback") {
     handleClaimBet(method, event, data, receipt);
+  } else if (method == "unstake_vex") {
+    handleUnstake(method, event, data, receipt);
   }
 }
 

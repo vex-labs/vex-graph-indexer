@@ -38,3 +38,10 @@ type Bet @entity {
   pay_state: PayState
   created_at: BigInt!
 }
+
+type User @entity {
+  id: ID!
+  total_winnings: BigInt!
+  stake_in: BigInt!
+  unstaked: BigInt!
+}
