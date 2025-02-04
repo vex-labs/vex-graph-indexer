@@ -8,8 +8,8 @@ dataSources:
     name: vex-contract
     network: near-testnet
     source:
-      account: "vex-contract-10.testnet"
-      startBlock: 186456500
+      account: "vex-contract-12.testnet"
+      startBlock: 186710000
     mapping:
       apiVersion: 0.0.6
       language: wasm/assemblyscript

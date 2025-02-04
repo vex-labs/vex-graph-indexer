@@ -13,7 +13,8 @@ enum Team {
 type Match @entity {
   id: ID!
   game: String!
-  date: BigInt!
+  date_timestamp: BigInt!
+  date_string: String!
   team_1: String!
   team_2: String!
   team_1_total_bets: BigInt!

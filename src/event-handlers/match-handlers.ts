@@ -9,7 +9,22 @@ export function handleCreateMatch(
 ): void {
   let new_match = new Match(data.get("match_id")!.toString());
   new_match.game = data.get("game")!.toString();
-  new_match.date = BigInt.fromString(data.get("date")!.toString());
+
+  // Convert DD/MM/YYYY to Unix timestamp
+  const dateStr = data.get("date")!.toString();
+  new_match.date_string = dateStr; // Store the original date string
+
+  const parts = dateStr.split("/");
+  const day = parseInt(parts[0]) as i32;
+  const month = parseInt(parts[1]) as i32;
+  const year = parseInt(parts[2]) as i32;
+
+  // Calculate Unix timestamp (seconds since epoch)
+  const timestamp = BigInt.fromI32(
+    (year - 1970) * 31536000 + month * 2592000 + day * 86400,
+  );
+
+  new_match.date_timestamp = timestamp; // Renamed from date to date_timestamp
   new_match.team_1 = data.get("team_1")!.toString();
   new_match.team_2 = data.get("team_2")!.toString();
   new_match.team_1_total_bets = BigInt.fromString(
