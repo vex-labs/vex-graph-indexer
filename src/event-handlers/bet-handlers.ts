@@ -5,7 +5,7 @@ import {
   BigInt,
   log,
 } from "@graphprotocol/graph-ts";
-import { Match, Bet, User } from "../../generated/schema";
+import { Match, Bet, User, WinningEvent } from "../../generated/schema";
 
 export function handleBet(
   method: string,
@@ -66,16 +66,23 @@ export function handleClaimBet(
         data.get("amount_received")!.toString(),
       );
 
+      // Create winning event
+      let winningEvent = new WinningEvent(bet_id);
+      winningEvent.user = account_id;
+      winningEvent.amount = amount_received;
+      winningEvent.save();
+
+      // Update user total (existing logic)
       let user = User.load(account_id);
       if (!user) {
-        // Create new user if doesn't exist
         user = new User(account_id);
         user.total_winnings = amount_received;
         user.stake_in = BigInt.zero();
         user.unstaked = BigInt.zero();
+        user.number_of_wins = 1; // Initialize wins counter
       } else {
-        // Add to existing user's winnings
         user.total_winnings = user.total_winnings.plus(amount_received);
+        user.number_of_wins = user.number_of_wins + 1; // Increment wins counter
       }
       user.save();
 

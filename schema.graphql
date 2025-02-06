@@ -33,7 +33,7 @@ type Bet @entity {
   id: ID!
   account_id: String!
   amount: BigInt!
-  match_id: ID!
+  match_id: String!
   team: Team!
   potential_winnings: BigInt!
   pay_state: PayState
@@ -45,4 +45,21 @@ type User @entity {
   total_winnings: BigInt!
   stake_in: BigInt!
   unstaked: BigInt!
+  number_of_wins: Int!
+}
+
+type WinningEvent @entity(timeseries: true) {
+  id: Int8!
+  timestamp: Timestamp!
+  user: String!
+  amount: BigInt!
+}
+
+type UserWinningStats
+  @aggregation(intervals: ["hour", "day"], source: "WinningEvent") {
+  id: Int8!
+  timestamp: Timestamp!
+  user: String!
+  totalWinnings: BigInt! @aggregate(fn: "sum", arg: "amount")
+  numberOfWins: Int! @aggregate(fn: "count")
 }

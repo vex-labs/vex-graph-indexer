@@ -16,6 +16,7 @@ export function handleStake(
     user.total_winnings = BigInt.zero();
     user.stake_in = amount;
     user.unstaked = BigInt.zero();
+    user.number_of_wins = 0;
   } else {
     user.stake_in = user.stake_in.plus(amount);
   }

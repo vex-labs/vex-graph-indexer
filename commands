@@ -1,7 +1,7 @@
-near contract call-function as-transaction usdc.betvex.testnet ft_transfer_call json-args '{"receiver_id": "vex-contract-10.testnet", "amount": "1000000", "msg": "{\"Bet\": {\"match_id\": \"Astralis-9_Pandas-07/03/2025\", \"team\": \"Team1\"}}"}' prepaid-gas '100.0 Tgas' attached-deposit '1 yoctoNEAR' sign-as pivortex.testnet network-config testnet sign-with-legacy-keychain send
+near contract call-function as-transaction usdc.betvex.testnet ft_transfer_call json-args '{"receiver_id": "vex-contract-12.testnet", "amount": "1000000", "msg": "{\"Bet\": {\"match_id\": \"Astralis-9_Pandas-07/03/2025\", \"team\": \"Team1\"}}"}' prepaid-gas '100.0 Tgas' attached-deposit '1 yoctoNEAR' sign-as pivortex.testnet network-config testnet sign-with-legacy-keychain send
 
-near contract call-function as-transaction vex-contract-10.testnet end_betting json-args '{"match_id": "Astralis-9_Pandas-07/03/2025"}' prepaid-gas '100.0 Tgas' attached-deposit '0 NEAR' sign-as admin.betvex.testnet network-config testnet sign-with-legacy-keychain send
+near contract call-function as-transaction vex-contract-12.testnet end_betting json-args '{"match_id": "Astralis-9_Pandas-07/03/2025"}' prepaid-gas '100.0 Tgas' attached-deposit '0 NEAR' sign-as admin.betvex.testnet network-config testnet sign-with-legacy-keychain send
 
-near contract call-function as-transaction vex-contract-10.testnet finish_match json-args '{"match_id": "Astralis-9_Pandas-07/03/2025", "winner": "Team1"}' prepaid-gas '300.0 Tgas' attached-deposit '0 NEAR' sign-as admin.betvex.testnet network-config testnet sign-with-legacy-keychain send
+near contract call-function as-transaction vex-contract-12.testnet finish_match json-args '{"match_id": "Astralis-9_Pandas-07/03/2025", "winner": "Team1"}' prepaid-gas '300.0 Tgas' attached-deposit '0 NEAR' sign-as admin.betvex.testnet network-config testnet sign-with-legacy-keychain send
 
-near contract call-function as-transaction vex-contract-10.testnet claim json-args '{"bet_id": "34"}' prepaid-gas '300.0 Tgas' attached-deposit '0 NEAR' sign-as pivortex.testnet network-config testnet sign-with-legacy-keychain send
+near contract call-function as-transaction vex-contract-12.testnet claim json-args '{"bet_id": "42"}' prepaid-gas '300.0 Tgas' attached-deposit '0 NEAR' sign-as pivortex.testnet network-config testnet sign-with-legacy-keychain send
